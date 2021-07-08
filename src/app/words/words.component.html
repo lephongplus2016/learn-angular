@@ -1,0 +1,65 @@
+<!-- Nhớ là bootstrap 3 và 4 cú pháp hoàn toàn khác nhau 
+-> nên không chạy là bình thường -->
+
+                                                        <!-- Form thêm từ mới -->
+<div class="container" *ngIf="isShowForm">
+    <div class="form-group">
+        <label for=""></label>
+        <!-- Chú ý [(ngModel)] chỉ dùng cho directive binding với input mà thôi, các event ko dùng được -->
+        <!-- ngModel luôn đồng bộ trực tiếp với value , có thể là value text của input, hoặc 1 thẻ value của seletor hoặc 1 thẻ value của radio button -->
+        <!-- phải import WordsComponent mới có thể dùng directive này -->
+        <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="English" [(ngModel)]="wordInEn">
+        <label for=""></label>
+        <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Vietnamese" [(ngModel)] ="wordInVn">
+        <br>
+        <button type="button" class="btn btn-primary" (click) = "addWord();" >Click to add new word</button>
+      </div>
+</div>
+<!-- Muốn ẩn hiện 1 thẻ nào đó nhớ đến thuộc tính hide hoặc ngIf -->
+
+                                                        <!-- button ẩn hiện -->
+<div class="container">
+    <button class="btn btn-primary" (click)="isShowForm = true" *ngIf="!isShowForm">Click to add new word</button>
+    <br>
+                                                        <!-- Filter -->
+      <label for="">Choose a filter :  </label>
+
+      <!-- Ở đây ngModel binding data tới value ở option -->
+    <select name="" id="" [(ngModel)]="filterStatus">
+        <option value='XEM_TAT_CA'>Chung</option>
+        <option value='XEM_TU_DA_HOC'>Từ đã học</option>
+        <option value='XEM_TU_CHUA_HOC'>Từ chưa học</option>
+    </select>
+
+</div>
+<br>
+
+
+
+                                                        <!-- Hiển thị view words -->
+<div class="container">
+
+    <div *ngFor="let word of arrWords">
+        <!-- interpolation vốn là 1 string, nên nếu muốn chỉnh sửa phải dùng  + string -->
+        <!-- <h3 [ngStyle]="{color: word.memorized ?'green':'red'}">
+            {{ word.en +' : '+ word.vn }}
+        </h3> -->
+        <div class="card" [ngStyle]="{color: word.memorized ?'green':'red'}"  *ngIf="filter(word.memorized);">
+            <img class="card-img-top" src="holder.js/100x180/" alt="">
+            <div class="card-body">
+                <h3 class="card-title">{{word.en}}</h3>
+                <p class="card-text">{{word.vn}}</p>
+                <!-- xóa card -->
+                <button type="button" class="btn btn-danger" (click)="removeWord(word.id);"> Remove </button> 
+                <button type="button" class="btn btn-warning" (click)="word.memorized = ! word.memorized" > 
+                    {{ word.memorized ? 'finish' : 'not finish' }}    
+                </button>
+            </div>
+        </div>
+       
+    </div>
+
+</div>
+
+
+

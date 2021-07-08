@@ -1,0 +1,21 @@
+<div class="container" >
+    <div class="jumbotron" text-center>
+        <h1 class="display-3 text-center">Xử lý input string</h1>
+        <p class="lead" >Dùng two way binding</p>
+        <hr class="my-2">
+        <!-- This is two ways binding -->
+        <input type="text" placeholder="Input username at here"  [(ngModel)] = 'name'>
+    <!-- style binding -->
+        <h2 [style.color] = "name.length % 2 === 0 ? 'red' : 'black'">
+            Your name: {{name}}</h2>
+
+       
+
+    <input #phone placeholder="phone number" />
+
+    </div>
+   
+</div>
+<div [class] = "'circle2'"></div>
+<div class = "circle2"></div>
+<div class = "square"></div>

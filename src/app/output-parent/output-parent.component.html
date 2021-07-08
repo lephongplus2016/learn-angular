@@ -1,0 +1,8 @@
+<p>Component cha</p>
+<h1>Value : {{value}}</h1>
+<!-- Khi gọi tag child
+parent tạo ra 1 event Emitter với cú phát sau: -->
+<app-output-child (XuLyValueCuaCha) = 'changeValue($event)'></app-output-child>
+<!-- child chỉ biết XuLyValueCuaCha , chứ hàm changeValue vẫn là hàm của parent, không bị component khác biết
+Tuy nhiên event đó gọi function này hoạt động
+Đó là cơ chế của output  -->

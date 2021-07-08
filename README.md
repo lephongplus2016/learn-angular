@@ -1,7 +1,3 @@
-# InputDataBinding
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.0.
-
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
@@ -10,18 +6,30 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+## Khỏi tạo project:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```bash
+ng new input-data-binding
+```
 
-## Running unit tests
+tạo mới component
+ng g c user-form
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+tải boostrap : yarn add bootstrap jquery
+sau đó thêm path ở angular.json
+"styles": [
+"src/styles.css",
+"./node_modules/bootstrap/dist/css/bootstrap.min.css"
+],
+"scripts": [
+"./node_modules/jquery/dist/jquery.min.js",
+"./node_modules/bootstrap/dist/js/bootstrap.min.js"
+]
 
-## Running end-to-end tests
+### Muốn truyền input ở thẻ thì phải Import Input
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### HttpModule không còn hỗ trợ từ angular 5 trở lên nữa
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+thay vì đó dùng import {HttpClientModule} from '@angular/common/http'
+import {HttpClient} from '@angular/common/http'
+https://stackoverflow.com/questions/38510369/cannot-find-module-angular-http
