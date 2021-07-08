@@ -33,3 +33,4 @@ sau đó thêm path ở angular.json
 thay vì đó dùng import {HttpClientModule} from '@angular/common/http'
 import {HttpClient} from '@angular/common/http'
 https://stackoverflow.com/questions/38510369/cannot-find-module-angular-http
+dùng prettier để format code : https://www.youtube.com/watch?v=wTRBZ4QAlXw
