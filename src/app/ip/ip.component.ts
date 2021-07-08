@@ -1,3 +1,4 @@
+//thư viện onInit là cần thiết khi có ngOnInit
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/toPromise';
@@ -33,15 +34,21 @@ import { IpService } from '../ip.service';
 // //  }
 
 // } //implements OnInit
-export class IpComponent {
+export class IpComponent implements OnInit {
   ip: String;
   // cái ip trả về này liên tục báo void hoặc object gì đó nên ko thể gán cho ip đc
   // Đành phải ép kiểu string thì gán đc
-  constructor(private ipservice: IpService) {
-    this.ipservice.getMyIp().then((ip) => {
-      console.log(ip);
-      this.ip = JSON.parse(JSON.stringify(ip));
-    });
+
+  constructor(private ipservice: IpService) {}
+
+  ngOnInit(): void {
+    this.ipservice
+      .getMyIp()
+      .then((ip) => {
+        console.log(ip);
+        this.ip = JSON.parse(JSON.stringify(ip));
+      })
+      .catch((err) => console.log(err));
     // console.log('ip ne '+this.ip);
   }
 }
