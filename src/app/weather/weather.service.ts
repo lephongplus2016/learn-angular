@@ -14,7 +14,8 @@ export class WeatherService {
         { responseType: 'json' }
       )
       .toPromise()
-      .then((res: any) => res.main.temp)
-      .catch((err) => console.log(err));
+      .then((res: any) => res.main.temp);
+    //.catch((err) => console.log('loi roi ' + err));
   }
 }
+//hàm catch sẽ ưu tiên chạy ở đây, bên kia ko bắt được catch nữa

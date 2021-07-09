@@ -11,16 +11,44 @@ import { WeatherService } from './weather.service';
 })
 export class WeatherComponent implements OnInit {
   temp: any;
+  cityName: string = '';
+  cityNameShow = '';
+  isLoading = false;
+  error = false;
+
   constructor(private weatherAPI: WeatherService) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+  getTempByAPI() {
+    this.cityNameShow = this.cityName;
+    this.isLoading = true;
+    this.error = false;
+    console.log('city name ' + this.cityName);
+
     this.weatherAPI
-      .getTempByAPI('London')
+      .getTempByAPI(this.cityName)
       .then((temp) => {
         console.log(temp);
         this.temp = temp;
+        this.isLoading = false;
+        this.cityName = '';
+
         //JSON.parse(JSON.stringify(temp));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        this.error = true;
+        this.isLoading = false;
+        this.cityNameShow = '';
+        console.log(err);
+        console.log('loi roi ');
+      });
+  }
+
+  getMessage() {
+    if (this.isLoading) return 'Loading ...';
+    else
+      return this.cityNameShow === ''
+        ? 'Weather viewer'
+        : 'Nhiệt độ của thành phố ' + this.cityNameShow + ' là ' + this.temp;
   }
 }

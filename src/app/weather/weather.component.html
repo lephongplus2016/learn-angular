@@ -1,1 +1,27 @@
-<h3>Nhiệt độ của thành phố là {{ temp }}</h3>
+<!-- chú ý trong {{ hàm không được có ;}}
+nhưng trong 'hàm được có ;' -->
+<div class="contaner">
+  <h3 class="text-center">
+    {{ getMessage() }}
+  </h3>
+  <div class="form-group">
+    <label for="">Nhập thành phố muốn xem nhiệt độ - Nhập tên quốc tế </label>
+    <input
+      type="text"
+      class="form-control"
+      name=""
+      id=""
+      aria-describedby="helpId"
+      placeholder="London"
+      [(ngModel)]="cityName"
+    />
+  </div>
+  <button type="button" class="btn btn-success" (click)="getTempByAPI()">
+    Xem nhiệt độ
+  </button>
+
+  <br />
+  <div class="alert alert-danger" role="alert" *ngIf="error">
+    <strong>Can't find this city!</strong>
+  </div>
+</div>
