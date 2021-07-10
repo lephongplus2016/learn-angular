@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +21,7 @@ import { RoundPipe } from './round.pipe';
 import { IpComponent } from './ip/ip.component';
 import { IpService } from './ip.service';
 import { WeatherComponent } from './weather/weather.component';
+import { SignInComponent } from './sign-in.component';
 
 @NgModule({
   declarations: [
@@ -37,16 +38,11 @@ import { WeatherComponent } from './weather/weather.component';
     LearnPipeComponent,
     RoundPipe,
     IpComponent,
-    WeatherComponent
+    WeatherComponent,
+    SignInComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule
-    
-  ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [IpService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
