@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { SignInService } from './sign-in.service';
+
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/toPromise';
 
@@ -66,13 +68,14 @@ import 'rxjs/add/operator/toPromise';
 
       <button [disabled]="formSignIn.invalid">Submit</button>
 
-      <button (click)="postToServer()">post</button>
+      <button (click)="postToServerTest()">post</button>
     </form>
 
     <p>{{ txtEmail.errors | json }}</p>
     <p>{{ txtPassword.errors | json }}</p>
     <p>{{ formSignIn.value | json }}</p>
   `,
+  providers: [SignInService],
 })
 // [disable] sẽ ẩn nút đi nếu form bị invalid
 // form sẽ invalid nếu input nào có required=> ko được để trống
@@ -89,9 +92,12 @@ import 'rxjs/add/operator/toPromise';
 
 // ngModelGroup sẽ gop nhóm check box hoặc 1 nhóm nào đó
 export class SignInComponent {
-  constructor(private httpclient: HttpClient) {}
+  constructor(
+    private httpclient: HttpClient,
+    private signinservice: SignInService
+  ) {}
 
-  postToServer() {
+  postToServerTest() {
     const url = 'http://localhost:3000/signin';
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const body = JSON.stringify({ name: 'phong' });
@@ -105,16 +111,9 @@ export class SignInComponent {
 
   onSubmit(formSignIn) {
     //console.log(formSignIn.value);
-
-    const url = 'http://localhost:3000/signin';
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    //const body = JSON.stringify({ formSignIn });
-    const body = formSignIn.value;
-    this.httpclient
-      .post(url, body, { headers })
-      .toPromise()
-      .then((res: any) => res)
-      .then((resText) => console.log(resText))
+    this.signinservice
+      .postToServer(formSignIn.value)
+      .then((result) => console.log(result))
       .catch((err) => console.log('loi roi ' + err));
   }
 }
