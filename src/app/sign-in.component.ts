@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import 'rxjs/add/operator/toPromise';
 
 @Component({
   selector: 'app-sign-in',
@@ -63,6 +65,8 @@ import { Component } from '@angular/core';
       </div>
 
       <button [disabled]="formSignIn.invalid">Submit</button>
+
+      <button (click)="postToServer()">post</button>
     </form>
 
     <p>{{ txtEmail.errors | json }}</p>
@@ -85,7 +89,32 @@ import { Component } from '@angular/core';
 
 // ngModelGroup sẽ gop nhóm check box hoặc 1 nhóm nào đó
 export class SignInComponent {
+  constructor(private httpclient: HttpClient) {}
+
+  postToServer() {
+    const url = 'http://localhost:3000/signin';
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const body = JSON.stringify({ name: 'phong' });
+    this.httpclient
+      .post(url, body, { headers })
+      .toPromise()
+      .then((res) => res)
+      .then((resText) => console.log(resText))
+      .catch((err) => console.log('loi roi ' + err));
+  }
+
   onSubmit(formSignIn) {
-    console.log(formSignIn.value);
+    //console.log(formSignIn.value);
+
+    const url = 'http://localhost:3000/signin';
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    //const body = JSON.stringify({ formSignIn });
+    const body = formSignIn.value;
+    this.httpclient
+      .post(url, body, { headers })
+      .toPromise()
+      .then((res: any) => res)
+      .then((resText) => console.log(resText))
+      .catch((err) => console.log('loi roi ' + err));
   }
 }
