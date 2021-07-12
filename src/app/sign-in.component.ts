@@ -109,6 +109,7 @@ export class SignInComponent {
       .catch((err) => console.log('loi roi ' + err));
   }
 
+  // do ở sign-in.service.ts ko thể nhận formSignIn nên phải truyền value vào
   onSubmit(formSignIn) {
     //console.log(formSignIn.value);
     this.signinservice
@@ -116,4 +117,5 @@ export class SignInComponent {
       .then((result) => console.log(result))
       .catch((err) => console.log('loi roi ' + err));
   }
+  //tại .then((result) => console.log(result)) sẽ đón giá trị return của hàm postToServer, đặt tên gì cũng được
 }

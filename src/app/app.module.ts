@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +23,7 @@ import { IpComponent } from './ip/ip.component';
 import { IpService } from './ip.service';
 import { WeatherComponent } from './weather/weather.component';
 import { SignInComponent } from './sign-in.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -40,8 +42,15 @@ import { SignInComponent } from './sign-in.component';
     IpComponent,
     WeatherComponent,
     SignInComponent,
+    SignUpComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+  ],
   providers: [IpService],
   bootstrap: [AppComponent],
 })

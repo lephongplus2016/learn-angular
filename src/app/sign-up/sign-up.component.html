@@ -1,0 +1,12 @@
+<div class="container">
+  <h3>REACTIVE FORM</h3>
+  <br />
+
+  <form (ngSubmit)="onSubmit()" [formGroup]="formSignIn">
+    <input type="text" placeholder="Email" formControlName="email" />
+    <br /><br />
+    <input type="password" placeholder="Password" formControlName="password" />
+    <br /><br />
+    <button type="submit">Sumit</button>
+  </form>
+</div>

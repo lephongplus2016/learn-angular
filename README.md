@@ -34,3 +34,13 @@ thay vì đó dùng import {HttpClientModule} from '@angular/common/http'
 import {HttpClient} from '@angular/common/http'
 https://stackoverflow.com/questions/38510369/cannot-find-module-angular-http
 dùng prettier để format code : https://www.youtube.com/watch?v=wTRBZ4QAlXw
+
+đoạn code này dùng để cho phép server nodejs cho phép gọi api từ cổng khác của localhost
+
+```js
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Content-Type,X-Requested-With");
+  next();
+});
+```
