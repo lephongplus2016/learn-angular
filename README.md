@@ -37,7 +37,7 @@ dùng prettier để format code : https://www.youtube.com/watch?v=wTRBZ4QAlXw
 
 đoạn code này dùng để cho phép server nodejs cho phép gọi api từ cổng khác của localhost
 
-```js
+```javascript
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Content-Type,X-Requested-With");
